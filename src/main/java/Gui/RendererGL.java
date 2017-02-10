@@ -1,7 +1,6 @@
 package Gui;
 
 import com.jogamp.opengl.util.FPSAnimator;
-import problem.ProblemClass;
 
 import javax.media.opengl.*;
 import javax.media.opengl.awt.GLCanvas;
@@ -16,8 +15,6 @@ class RendererGL implements GLEventListener {
     private final GLCanvas canvas;
     // перерисовщик окна
     private FPSAnimator animator;
-    // класс для решения поставленной задачи
-    final ProblemClass problem;
 
 
     // вызывается при первой отрисовке кадра
@@ -45,7 +42,7 @@ class RendererGL implements GLEventListener {
         GL2 gl = drawable.getGL().getGL2();
         gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set background color to black and opaque
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT);         // Clear the color buffer (background)
-        MyRenderer.drawScene(gl,problem);
+        MyRenderer.drawScene(gl);
         // объязываем openGL отрисовать всю сцену и только потом рисовать следующий кадр
         gl.glFlush();
     }
@@ -57,8 +54,6 @@ class RendererGL implements GLEventListener {
         GLCapabilities capabilities = new GLCapabilities(profile);
         this.canvas = new GLCanvas(capabilities);
         canvas.addGLEventListener(this);
-        // переменная класса решения задачи
-        problem = new ProblemClass();
     }
 
     // геттер рисовалки

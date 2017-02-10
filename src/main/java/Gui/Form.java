@@ -1,7 +1,5 @@
 package Gui;
 
-import problem.PointClass;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -14,21 +12,9 @@ public class Form extends JFrame {
     // панель для отображения OpenGL
     private JPanel GLPlaceholder;
     private JPanel root;
-    private JLabel camText;
-    private JTextField xPointField;
-    private JTextField yPointField;
-    private JButton randomBtn;
-    private JTextField pointCntField;
-    private JButton loadFromFileBtn;
-    private JButton saveToFileBtn;
-    private JButton clearBtn;
-    private JButton solveBtn;
-    private JLabel problemText;
-    private JButton addPoint;
-    private JRadioButton radioButton1;
-    private JRadioButton radioButton2;
-
     final Timer timer;
+    private JButton button1;
+    private JButton button2;
 
     // рисовалка OpenGL
     private final RendererGL renderer;
@@ -70,51 +56,7 @@ public class Form extends JFrame {
     }
 
     private void initWidgets() {
-        // задаём текст полю описания задачи
-        problemText.setText(convertToMultiline(problemStr));
-        // делаем первое радио выбранным
-        radioButton1.setSelected(true);
-        radioButton2.setSelected(false);
 
-        addPoint.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                double x = Double.parseDouble(xPointField.getText());
-                double y = Double.parseDouble(yPointField.getText());
-                int setVal = radioButton1.isSelected()? PointClass.SET_1:PointClass.SET_2;
-                renderer.problem.addPoint(x,y,setVal);
-            }
-        });
-        randomBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                renderer.problem.addRandomPoints(Integer.parseInt(pointCntField.getText()));
-            }
-        });
-        loadFromFileBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                renderer.problem.loadFromFile(FILE_NAME);
-            }
-        });
-        saveToFileBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                renderer.problem.saveToFile(FILE_NAME);
-            }
-        });
-        clearBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                renderer.problem.deletePoints();
-            }
-        });
-        solveBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                renderer.problem.solve();
-            }
-        });
     }
 
     private void onTime() {
