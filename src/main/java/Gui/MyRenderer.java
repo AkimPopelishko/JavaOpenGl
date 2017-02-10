@@ -10,7 +10,6 @@ import static com.jogamp.opengl.util.ImmModeSink.GL_QUADS;
 public class MyRenderer {
     // рисование сцены
     public static void drawScene(GL2 gl) {
-       
         gl.glBegin(GL_QUADS);
 
             gl.glVertex2d(-0.5, -0.5);
